@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import static com.magento.utilities.PropertiesManager.WebConfig;
+
 public class ChromeDriverFactory extends DriverAbstract {
 
 
@@ -19,13 +21,12 @@ public class ChromeDriverFactory extends DriverAbstract {
         options.addArguments("--disable-extensions");
         options.addArguments("--disable-gpu");
         options.addArguments("--incognito");
-        options.addArguments("--disable-popup-blocking");
-        options.addArguments("--ignore-certificate-errors");
         options.addArguments("--disable-notifications");
-        options.addArguments("--disable-application-cache");
         options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--headless=new");
         options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+        if (WebConfig.getProperty("HeadlessMode").equalsIgnoreCase("true")) {
+            options.addArguments("--headless=new");
+        }
 
 
 

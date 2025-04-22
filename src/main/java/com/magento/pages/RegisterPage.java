@@ -10,7 +10,7 @@ public class RegisterPage {
     private final DriverManager driver;
 
     // Locators for the registration page
-    private final By createAccountText = By.xpath("//h1[@class='page-title']");
+    private final By createAccountText = By.linkText("Create an Account");
     private final By firstNameField = By.id("firstname");
     private final By lastNameField = By.id("lastname");
     private final By emailField = By.id("email_address");
@@ -60,13 +60,13 @@ public class RegisterPage {
 
     // Fill in the password
     public RegisterPage enterPassword() {
-        driver.elementActions().fillField(passwordField, TestData.FAKE_PASSWORD);
+        driver.elementActions().fillField(passwordField, "Test@1234");
         return this;
     }
 
     // Fill in the Confirm password
     public RegisterPage enterConfirmPassword() {
-        driver.elementActions().fillField(confirmPasswordField, TestData.FAKE_CONFIRM_PASSWORD);
+        driver.elementActions().fillField(confirmPasswordField, "Test@1234");
         return this;
     }
     // Click the register button
@@ -82,21 +82,11 @@ public class RegisterPage {
 
 
 
-//    // Method to register a new user
-//    public void registerNewUser() {
-//        enterFirstName();
-//        enterLastName();
-//        enterEmail();
-//        enterPassword();
-//        enterConfirmPassword();
-//        clickRegisterButton();
-//    }
-
                             /*********************Validations**********************/
 
     //check That SignupPage Is Loaded Successfully
     public RegisterPage checkThatSignupPageIsLoadedSuccessfully() {
-        Assert.assertEquals(driver.browserActions().getCurrentURL(), "https://magento.softwaretestingboard.com/customer/account/create/");
+        Assert.assertEquals(driver.browserActions().getCurrentURL(), "https://magento.softwaretestingboard.com/customer/account/");
         return this;
      }
 
