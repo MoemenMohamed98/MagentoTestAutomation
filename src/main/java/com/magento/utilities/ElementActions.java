@@ -45,6 +45,20 @@ public class ElementActions {
         scrollToElement(locator);
         return driver.findElement(locator).getText();
     }
+    //isDisplayed
+    public boolean isDisplayed(By locator) {
+        // Wait for the element to be visible before checking if displayed
+        waits.waitForElementToBeVisible(locator);
+        // Scroll to the element before checking if displayed
+        scrollToElement(locator);
+        return driver.findElement(locator).isDisplayed();
+    }
+
+    //Hover
+    public ElementActions hoverOnItem(By locator) {
+        new Actions(driver).moveToElement(driver.findElement(locator)).click().build().perform();
+        return this;
+    }
 
 
 }

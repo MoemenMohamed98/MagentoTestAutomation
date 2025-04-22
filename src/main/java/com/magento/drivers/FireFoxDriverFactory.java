@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+import static com.magento.utilities.PropertiesManager.WebConfig;
+
 public class FireFoxDriverFactory extends DriverAbstract {
 
     @Override
@@ -24,7 +26,9 @@ public class FireFoxDriverFactory extends DriverAbstract {
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--headless=new");
         options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-
+        if (WebConfig.getProperty("HeadlessMode").equalsIgnoreCase("true")) {
+            options.addArguments("--headless=new");
+        }
 
 
         // Initialize the FirefoxDriver
